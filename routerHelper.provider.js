@@ -4,7 +4,7 @@
  * @description
  * Router helper
  */
-(function (angular) {
+(function(angular) {
     'use strict';
 
     angular
@@ -14,15 +14,18 @@
         .provider('routerHelper', routerHelperProvider);
 
     routerHelperProvider.$inject = [
+        '$locationProvider',
         '$stateProvider',
         '$urlRouterProvider',
         '$urlMatcherFactoryProvider'
     ];
 
-    function routerHelperProvider($stateProvider, $urlRouterProvider, $urlMatcherFactory) {
+    function routerHelperProvider($locationProvider,
+        $stateProvider, $urlRouterProvider, $urlMatcherFactory) {
 
         this.$get = routerHelper;
 
+        $locationProvider.hashPrefix('');
         //$locationProvider.html5Mode(true);
 
         routerHelper.$inject = [
@@ -59,7 +62,7 @@
              * </pre>
              */
             function configureStates(states, otherwisePath) {
-                states.forEach(function (state) {
+                states.forEach(function(state) {
                     $stateProvider.state(state.state, state.config);
                 });
                 otherwise(otherwisePath);
@@ -90,7 +93,7 @@
             function redirects() {
                 if (!_redirectTo) {
                     _redirectTo = true;
-                    $rootScope.$on('$stateChangeStart', function (evt, to, params) {
+                    $rootScope.$on('$stateChangeStart', function(evt, to, params) {
                         if (to.redirectTo) {
                             evt.preventDefault();
                             $state.go(to.redirectTo, params, {
@@ -139,7 +142,7 @@
                     $urlMatcherFactory.strictMode(false);
 
                     var router = getUrlRouterProvider();
-                    router.rule(function ($injector, $location) {
+                    router.rule(function($injector, $location) {
                         var path = $location.url();
 
                         // check to see if the path already has a slash where it should be
