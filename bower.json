@@ -1,0 +1,14 @@
+{
+  "name": "routerHelper",
+  "version": "0.1.0",
+  "authors": [
+    "Andrey Pavlov <andrew.m.pavlov@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": false,
+  "homepage": "https://github.com/andrewpavlov/routerHelper",
+  "dependencies": {},
+  "main": [
+    "routerHelper.provider.js"
+  ]
+}
