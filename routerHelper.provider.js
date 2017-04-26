@@ -96,7 +96,18 @@
                     $rootScope.$on('$stateChangeStart', function(evt, to, params) {
                         if (to.redirectTo) {
                             evt.preventDefault();
-                            $state.go(to.redirectTo, params, {
+                            var _s;
+                            if (typeof to.redirectTo === 'function') {
+                                _s = to.redirectTo(evt, to, params);
+                            } else {
+                                _s = to.redirectTo;
+                            }
+                            if (typeof to.redirectTo === 'string') {
+                                _s = {
+                                    state: to.redirectTo
+                                }
+                            }
+                            $state.go(_s.state, _s.params || params, _s.options || {
                                 location: 'replace'
                             });
                         }
