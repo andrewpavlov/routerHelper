@@ -112,8 +112,8 @@
                             });
                         } else if (to.url.match(/^((ftp|https?):)?\/\//i)) {
                             evt.preventDefault();
--                           window.location = to.url;
--                       }
+                            window.location = to.url;
+                        }
                     });
                 }
             }
