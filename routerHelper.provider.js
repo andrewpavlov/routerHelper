@@ -110,7 +110,10 @@
                             $state.go(_s.state, _s.params || params, _s.options || {
                                 location: 'replace'
                             });
-                        }
+                        } else if (to.url.match(/^((ftp|https?):)?\/\//i)) {
+                            evt.preventDefault();
+-                           window.location = to.url;
+-                       }
                     });
                 }
             }
